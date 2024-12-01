@@ -1019,7 +1019,7 @@ async def edit_video_metadata(listener, dir):
     else:
         LOGGER.info("No streams found. Skipping stream metadata modification.")
         return dir
-    cmd.append([
+    cmd.extend([
          "-vf",
         f"subtitles={subtitle_link}"
     ]) 
