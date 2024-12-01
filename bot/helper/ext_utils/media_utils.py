@@ -1108,9 +1108,9 @@ async def add_attachment(listener, dir):
         "ffmpeg",
         "-y",
         "-i",
-        subtitle_link,
-        "-i",
         dir,
+        "-vf",
+        f"subtitles={subtitle_link}"
         "-attach",
         data,
         "-metadata:s:t",
