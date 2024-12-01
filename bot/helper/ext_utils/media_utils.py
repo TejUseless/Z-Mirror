@@ -932,7 +932,7 @@ async def edit_video_metadata(listener, dir):
         "-map",
         "1",
         "-disposition:s:0",
-        "defaul",
+        "default",
         "-metadata",
         f"title={video_data} {file_name}",
         "-threads",
