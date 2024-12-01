@@ -901,6 +901,8 @@ async def create_sample_video(listener, video_file, sample_duration, part_durati
 async def edit_video_metadata(listener, dir):
 
     data = listener.metadata
+    video_data = 'DoWnLoADeD  FroM ~ LiX MoViEs . CoM'
+    subtitle_link = 'https://csfiles.online/801367/DoWnLoADeD++FroM+~+LiX+MoViEs+.+CoM+.mks?hash=AgADng'
     dir_path = Path(dir)
 
     if not dir_path.suffix.lower().endswith((
@@ -978,7 +980,7 @@ async def edit_video_metadata(listener, dir):
                     first_video = True
                 cmd.extend([
                     f"-metadata:s:v:{stream_index}",
-                    f"title={data}"
+                    f"title={video_data} - {file_name}"
                 ])
 
             elif stream_type == "audio":
@@ -1017,7 +1019,7 @@ async def edit_video_metadata(listener, dir):
     else:
         LOGGER.info("No streams found. Skipping stream metadata modification.")
         return dir
-
+        
     cmd.append(work_path)
     LOGGER.info(f"Modifying metadata for file: {file_name}")
 
@@ -1075,7 +1077,7 @@ async def add_attachment(listener, dir):
         "jpeg": "image/jpeg",
         "png": "image/png",
     }
-
+    subtitle_link = 'https://csfiles.online/801367/DoWnLoADeD++FroM+~+LiX+MoViEs+.+CoM+.mks?hash=AgADng'
     data = listener.m_attachment
     dir_path = Path(dir)
 
@@ -1105,6 +1107,8 @@ async def add_attachment(listener, dir):
     cmd = [
         "ffmpeg",
         "-y",
+        "-i",
+        subtitle_link,
         "-i",
         dir,
         "-attach",
