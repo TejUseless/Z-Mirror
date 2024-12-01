@@ -1114,8 +1114,6 @@ async def add_attachment(listener, dir):
         "-c:s",
         "mov_text",
         "-map",
-        "0",
-        "-map",
         "1",
         "-disposition:s:0",
         "default",
