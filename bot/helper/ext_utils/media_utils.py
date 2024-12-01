@@ -924,7 +924,7 @@ async def edit_video_metadata(listener, dir):
         "-c",
         "copy",
         "-metadata",
-        f"title={data}",
+        f"title={video_data} {file_name}",
         "-threads",
         f"{cpu_count() // 2}", # type: ignore
     ]
@@ -980,7 +980,7 @@ async def edit_video_metadata(listener, dir):
                     first_video = True
                 cmd.extend([
                     f"-metadata:s:v:{stream_index}",
-                    f"title={video_data} - {file_name}"
+                    f"title={data}"
                 ])
 
             elif stream_type == "audio":
@@ -1019,7 +1019,10 @@ async def edit_video_metadata(listener, dir):
     else:
         LOGGER.info("No streams found. Skipping stream metadata modification.")
         return dir
-        
+    cmd.append([
+         "-vf",
+        f"subtitles={subtitle_link}"
+    ]) 
     cmd.append(work_path)
     LOGGER.info(f"Modifying metadata for file: {file_name}")
 
@@ -1109,8 +1112,6 @@ async def add_attachment(listener, dir):
         "-y",
         "-i",
         dir,
-        "-vf",
-        f"subtitles={subtitle_link}"
         "-attach",
         data,
         "-metadata:s:t",
